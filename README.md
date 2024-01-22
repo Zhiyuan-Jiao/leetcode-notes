@@ -7,9 +7,7 @@ Welcome to the LeetCode Notes repository! This repository is a collection of my 
 1. [Introduction](#introduction)
 2. [Organization](#organization)
 3. [How to Use This Repository](#how-to-use-this-repository)
-4. [Contributing](#contributing)
 5. [Feedback](#feedback)
-6. [License](#license)
 
 ## Introduction
 
