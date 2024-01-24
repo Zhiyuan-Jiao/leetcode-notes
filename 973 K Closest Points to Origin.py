@@ -22,6 +22,6 @@ class Solution:
         return points[:k]
 
 
-Algorithm: quickSelect
-Time complecity: O(n) (average), O(n2) (worst)
-Space complecity: O(n)
+# Algorithm: quickSelect
+# Time complecity: O(n) (average), O(n2) (worst)
+# Space complecity: O(n)
