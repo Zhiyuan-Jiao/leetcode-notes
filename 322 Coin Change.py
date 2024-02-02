@@ -8,4 +8,6 @@ class Solution:
                     dp[a] = min(dp[a], 1 + dp[a - c])
         return dp[amount] if dp[amount] != amount + 1 else - 1
 
-# Algorithm: DP computer the smallest quantity of coins to get the that amount from the 0 to the number                 
+# Algorithm: DP bottom up compute the smallest quantity of coins to get the that amount from the 0 to the number
+# Time complexity: O(amount *  coins)
+# Space complexity: O(amount)
