@@ -1,25 +1,21 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
+        # Create the max heap and q
         count = Counter(tasks)
-        maxHeap = [-1 for i in count.values()]
+        maxHeap = [-i for i in count.values()]
         heapq.heapify(maxHeap)
-
-        time = 0
         q = collections.deque()
 
+        time = 0
+        # as long as there are tasks waiting to be processed
         while maxHeap or q:
             time += 1
+            if maxHeap:
+                cnt = 1 + heapq.heappop(maxHeap)
+                if cnt:
+                    q.append([cnt, time + n])
             
-            # there are tasks ready to be process
-            if maxHeap: 
-                count = 1 + heapq.heappop(maxHeap)
-                if count: q.append(count)
-
-            # there are tasks waiting to be processed and no wait time
-            if q and q[0][1] == time: 
+            if q and q[0][1] == time:
                 heapq.heappush(maxHeap, q.popleft()[0])
-
+        
         return time
-
-# Time complexity: O(n)
-# Space complexity: O(n)
