@@ -24,4 +24,4 @@ class Solution:
 
 # Note: need to check if the cur is the same as the prev before calculating sum
 # Time complexity: O(nlogn + n^2) = O(n^2)
-# Space complexity: O(n)
+# Space complexity: O(n) due to the sort
