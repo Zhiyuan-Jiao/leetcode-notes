@@ -13,4 +13,24 @@ class Solution:
         return dfs(root, float("-inf"), float("inf"))
 
 # Time complexity: O(n)
-# Space compleixty: O(1)
+# Space compleixty: O(logn)
+
+# Use a variable to track the max
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        res = [True, float("-inf")]
+        def dfs(root):
+            # base case
+            if not root: return
+
+            dfs(root.left)
+            if res[1] >= root.val: 
+                res[0] = False
+            else: res[1] = root.val
+            dfs(root.right)
+        dfs(root)
+        return res[0]
+
+# Time complexity: O(n)
+# Space complexity: O(logn)
