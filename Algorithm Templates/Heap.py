@@ -7,7 +7,7 @@ heapq.heapify(minHeap)
 
 # time complexity: O(logn), n = 10
 max = -heapq.heappop(maxHeap)
-min = heapq.heappop(minHeap)
+min = heapq.heappop(minHeap) # Priority Queue
 
 v = 10
 # time complexity: O(logn), n = 10
