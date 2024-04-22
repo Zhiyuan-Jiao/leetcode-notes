@@ -8,8 +8,6 @@ t = 0
 
 while minHeap:
     w, v = heapq.heappop(minHeap)
-    if v == target:
-        return t
     if v in visited:
         continue
     t = w
