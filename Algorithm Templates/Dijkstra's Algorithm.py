@@ -15,5 +15,6 @@ while minHeap:
     for vi, wi in edges[v]:
         heapq.heappush(minHeap, (w + wi, vi))
 
+return t
 # Time complexity: O(elogv)
 # Space complexity: v
