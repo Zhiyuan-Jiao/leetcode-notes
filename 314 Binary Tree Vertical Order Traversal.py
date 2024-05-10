@@ -6,23 +6,19 @@
 #         self.right = right
 class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if not root: return []
+        if not root: return
 
-        colDict = defaultdict(list) # col -> nodes in the corresponding col
-        l, r = float("inf"), float("-inf")
-        q = collections.deque([(0, root)])
+        colDict = collections.defaultdict(list)
+        l, r = 0, 0
+        q = collections.deque([(root, 0)])
         while q:
-            for i in range(len(q)):
-                col, node = q.popleft()
-                if col < l: l = col
-                if col > r: r = col
-                colDict[col].append(node.val)
-                if node.left:
-                    q.append((col - 1, node.left))
-                if node.right:
-                    q.append((col + 1, node.right))
-        return [colDict[i] for i in range(l, r + 1)]
+            node, col = q.popleft()
+            l = min(l, col)
+            r = max(r, col)
+            colDict[col].append(node.val)
+            if node.left: q.append((node.left, col - 1))
+            if node.right: q.append((node.right, col + 1))
+        return [colDict[col] for col in range(l, r + 1)]
 
-# Note: Use a BFS to map all node in a colDict while track the l, r boundry for col range
 # Time complexity: O(n)
 # Space complexity: O(n)
