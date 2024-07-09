@@ -9,4 +9,4 @@ class Solution:
 # Note: Iterrate through sorted list to check how many qualified papers left, 
 # return qualified papers when it is smaller or equal to the cur paper citations
 
-# T: O(n) S: O(1)
+# T: O(nlogn) S: O(1)
