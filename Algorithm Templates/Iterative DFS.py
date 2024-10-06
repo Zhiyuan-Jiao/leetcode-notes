@@ -7,12 +7,10 @@ class TreeNode:
 def preorderDFS(root):
     stack, res = [root], []
     while stack:
-        node = stack.pop()
-        res.append(node.val)
-        if node.right:
-            stack.append(node.right)
-        if node.left:
-            stack.append(node.left)
+        cur = stack.pop()
+        res.append(cur.val)
+        if cur.right: stack.append(cur.right)
+        if cur.left: stack.append(cur.left)
     return res
 
 def inorderDFS(root):
@@ -27,17 +25,14 @@ def inorderDFS(root):
     return res
 
 def postorderDFS(root):
-    stack1, stack2, res = [root], [], []
-    while stack1:
-        node = stack1.pop()
-        stack2.append(node)
-        if node.left:
-            stack1.append(node.left)
-        if node.right:
-            stack1.append(node.right)
-    while stack2:
-        res.append(stack2.pop().val)
-    return res
+    stack, res = [root], []
+    while stack:
+        cur = stack.pop()
+        res.append(cur.val)
+        if cur.left: stack.append(cur.left)
+        if cur.right: stack.append(cur.right)
+    return res[::-1]
+    
 
 # Example tree:
 #     1
@@ -55,6 +50,3 @@ root.left.right = TreeNode(5)
 print("Preorder Traversal:", preorderDFS(root))
 print("Inorder Traversal:", inorderDFS(root))
 print("Postorder Traversal:", postorderDFS(root))
-
-# Time complexity: O(n) for all traversals
-# Space complexity: O(h), O(n) worst case for unbiased tree
