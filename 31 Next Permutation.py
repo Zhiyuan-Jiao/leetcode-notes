@@ -22,4 +22,4 @@ class Solution:
 # Note: 1. Find the pivot which is the first number not in descending order from left 
 #       2. Find the number to swap with, which is the first number larger than the pivot from left
 #       3. Swap
-#       4. Sorted the numbers after the pivot number
+#       4. Sorted the numbers after the pivot place in ascending order
