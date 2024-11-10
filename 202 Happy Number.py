@@ -1,16 +1,28 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        hashSet = set()
-        while True:
-            sumSqr = 0
+        def getDigitSum(n):
+            sum = 0
             while n:
                 digit = n % 10
-                sumSqr += digit ** 2
-                n = n // 10
-            if sumSqr == 1: return True
-            if sumSqr in hashSet: return False
-            hashSet.add(sumSqr)
-            n = sumSqr
+                n //= 10
+                sum += digit ** 2
+            return sum
+        
+        # visited = set()
+        # while n != 1:
+        #     n = getDigitSum(n)
+        #     if n in visited:
+        #         return False
+        #     visited.add(n)
+        # return True
 
-# Time complexity: O(n) n: # of times of sumSqr to reach sum = 1
-# Space complexity: O(n)
+        slow = fast = n
+        while slow != 1 and fast != 1:
+            slow = getDigitSum(slow)
+            fast = getDigitSum(getDigitSum(fast))
+            if slow == fast and slow != 1:
+                return False
+        return True
+
+# Finding the next value for a given number has a cost of O(logn) because
+# we are processing each digit in the number, and the number of digits in a number is given by logn.
