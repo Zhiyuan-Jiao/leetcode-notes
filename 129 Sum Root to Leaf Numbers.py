@@ -25,3 +25,38 @@ class Solution:
         return res
 
     # T: O(n) S: O(H)
+
+# morris traversal
+class Solution:
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        cur = root
+        res = 0
+        while cur:
+            if cur.left:
+                # find predecessor
+                pre = cur.left
+                while pre.right and pre.right != cur:
+                    pre = pre.right
+                # thread already exist
+                if pre.right:
+                    pre.right = None
+                    if not pre.left:
+                        res += pre.val
+                    cur.val -= 10 * pre.val
+                    if cur.right:
+                        cur.right.val += 10 * cur.val
+                    cur = cur.right
+                    continue
+                # create thread
+                pre.right = cur
+                cur.left.val += 10 * cur.val
+                cur = cur.left
+            else:
+                if cur.right:
+                    cur.right.val += 10 * cur.val
+                else:
+                    res += cur.val
+                cur = cur.right
+        return res
+    
+    # T: O(n) S: O(1)
