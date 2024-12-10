@@ -20,7 +20,7 @@ class BSTIterator:
         return res
 
     def hasNext(self) -> bool:
-        return self.cur or self.stack
+        return bool(self.cur or self.stack)
 
 
 # Your BSTIterator object will be instantiated and called as such:
