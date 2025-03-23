@@ -1,3 +1,5 @@
+from bisect import bisect_left
+
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         # res = [0]
@@ -16,17 +18,32 @@ class Solution:
         #             dfs(cur, nums[i + 1:])
         #             cur.pop()
 
-        # for i in range(len(nums)):
-        #     dfs([nums[i]], nums[i + 1:])
-        # return res[0]
+        # LIS = [1] * len(nums)
+        # for i in range(len(nums) - 1, -1, -1):
+        #     cur = LIS[i]
+        #     for j in range(i + 1, len(nums)):
+        #         if nums[j] > nums[i]:
+        #             cur = max(cur, LIS[i] + LIS[j])
+        #     LIS[i] = cur
+        # return max(LIS)
+        #
+        # T: O(n^2) S:O(n)
+        # Note: Using DP calculate max len from the right side
 
-        LIS = [1] * len(nums)
+        LIS = []
+        for n in nums:
+            if not LIS:
+                LIS.append(n)
+                continue
+            if n > LIS[-1]:
+                LIS.append(n)
+            else:
+                index = bisect_left(LIS, n)
+                LIS[index] = n
+        return len(LIS)
 
-        for i in range(len(nums) - 1, -1, -1):
-            for j in range(i + 1, len(nums)):
-                if nums[i] < nums[j]:
-                    LIS[i] = max(LIS[i], 1 + LIS[j])
-        return max(LIS)
-
-# Time complexity: O(n**2)
-# Space complexity: O(n)
+        # T: O(Nlogn) S: O(N)
+        # Note: Use a list to track the LIS, if a num is larger 
+        # than the end, add it. else replace the num position in 
+        # the list kind of like remember the head but still track 
+        # the len of the longest so far.
